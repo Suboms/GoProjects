@@ -4,7 +4,10 @@
 1. [Variable Declaration](#variable-declaration)
 2. [Basic Program Structure](#basic-program-structure)
 3. [Naming Conventions](#naming-conventions)
-4. [Best Practices](#best-practices)
+4. [Keywords in Go](#keywords-in-go)
+5. [Best Practices](#best-practices)
+6. [Frequently Used Standard Packages in Go](#frequently-used-standard-packages-in-go)
+7. [Quick Reference](#quick-reference)
 
 ---
 
@@ -193,6 +196,72 @@ Functions should describe what they do:
 Use descriptive names that read naturally:
 - ✅ `isActive`, `hasPermission`, `canEdit`
 - ❌ `active`, `permission`, `edit`
+
+---
+
+## Frequently Used Standard Packages in Go
+
+Go provides a rich set of built-in packages in its standard library. Below are some of the most commonly used ones:
+
+### 📦 Basic I/O
+- `fmt` – Formatting and printing (e.g., `fmt.Println`, `fmt.Scanln`)
+- `bufio` – Buffered input/output
+- `os` – Platform-independent interface to operating system functionality
+- `io` – Basic interfaces to I/O primitives
+- `io/ioutil` – Deprecated; replaced by `os` and `io` for reading/writing files
+
+### 📁 File and Directory Handling
+- `path/filepath` – Manipulates filename paths in a way that's compatible with the operating system
+- `os` – File creation, deletion, reading, writing, etc.
+
+### 🧮 Math and Numbers
+- `math` – Basic math functions like `math.Sqrt`, `math.Pow`
+- `math/rand` – Random number generation
+- `strconv` – String conversions for numbers (`strconv.Atoi`, `strconv.Itoa`)
+
+### ⏰ Time and Date
+- `time` – Time-related functions (e.g., `time.Now()`, `time.Sleep()`)
+
+### 🧵 Concurrency
+- `sync` – Synchronization primitives like `Mutex`, `WaitGroup`
+- `sync/atomic` – Low-level atomic memory primitives
+- `context` – Carries deadlines, cancellation signals, and request-scoped values
+
+### 🌐 Networking
+- `net` – Core networking interface
+- `net/http` – HTTP client and server implementations
+- `net/url` – URL parsing and formatting
+
+### 🔐 Security and Encryption
+- `crypto` – Cryptographic primitives
+- `crypto/md5`, `crypto/sha256`, etc. – Hash algorithms
+
+### 🧪 Testing
+- `testing` – Support for automated testing
+- `testify` – External but widely used testing framework (not part of standard lib)
+
+### 📋 Data Handling
+- `encoding/json` – JSON encoding and decoding
+- `encoding/csv` – CSV file support
+- `encoding/xml` – XML encoding and decoding
+
+### 📜 Errors and Logging
+- `errors` – Error creation and wrapping
+- `log` – Simple logging package
+
+### 🗃️ Containers
+- `container/list` – Doubly linked list
+- `container/heap` – Heap interface
+- `container/ring` – Circular list
+
+### 🧰 Utilities
+- `reflect` – Reflection and dynamic typing
+- `regexp` – Regular expressions
+- `flag` – Command-line flag parsing
+
+---
+
+> 🧠 **Note**: All these packages come with Go and do not require separate installation. You can import them directly with `import "package-name"`.
 
 ---
 
