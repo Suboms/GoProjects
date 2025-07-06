@@ -32,6 +32,12 @@ func main(){
   operation = strings.TrimSpace(operation)
   if operation == "add"{
     fmt.Println("Result is ", add(x,y))
+  }else if operation == "sub"{
+    fmt.Println("Result is",sub(x,y))
+  }else if operation == "divide"{
+    fmt.Println("Result is ", divide(x,y))
+  }else if operation == "multiply"{
+    fmt.Println("Result is ", multiply(x,y))
   }else{
     fmt.Println("Invalid Operation")
   }
