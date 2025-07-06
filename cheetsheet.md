@@ -49,7 +49,7 @@ x, y := 6, true        // x is int, y is bool
 name, age := "John", 25 // name is string, age is int
 ```
 
-> **Note:** Go is case-sensitive and the compiler infers types based on the assigned values in short-hand declarations.
+> **Note:** Go is case-sensitive and the compiler infers types based on the assigned values in short-hand declarations. Also long hand variable declaration are known as __static type declaration__ while short hand variable declaration are known as __dynamic type declaration__
 
 ---
 
@@ -128,6 +128,36 @@ Don't repeat package names in type names:
 Type names should be singular:
 - ✅ `User`, `Product`, `Order`, `Customer`
 - ❌ `Users`, `Products`, `Orders`, `Customers`
+
+---
+
+## Keywords in Go
+Keywords are reserved token that can't be used as an identifier 
+- break
+- case
+- *chan 
+- const
+- continue 
+- default
+- defer
+- else
+- failthrough
+- for
+- func
+- go
+- goto 
+- if
+- import
+- interface
+- map
+- package
+- range
+- return
+- select 
+- struct
+- switch 
+- type
+- var
 
 ---
 
