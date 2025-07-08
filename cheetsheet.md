@@ -5,9 +5,11 @@
 2. [Basic Program Structure](#basic-program-structure)
 3. [Naming Conventions](#naming-conventions)
 4. [Keywords in Go](#keywords-in-go)
-5. [Best Practices](#best-practices)
-6. [Frequently Used Standard Packages in Go](#frequently-used-standard-packages-in-go)
-7. [Quick Reference](#quick-reference)
+5. [Go String Format Verbs with Examples](#go-string-format-verbs-with-examples)
+6. [Architecture-Independent Integer Types in Go](#architectureindependent-integer-types-in-go)
+7. [Best Practices](#best-practices)
+8. [Frequently Used Standard Packages in Go](#frequently-used-standard-packages-in-go)
+9. [Quick Reference](#quick-reference)
 
 ---
 
@@ -161,6 +163,186 @@ Keywords are reserved token that can't be used as an identifier
 - switch 
 - type
 - var
+
+---
+
+## Go String Format Verbs with Examples
+
+In Go, the `fmt` package provides powerful formatting verbs for printing values in various formats using functions like `fmt.Printf`, `fmt.Sprintf`, etc.
+
+---
+
+### 📦 General Verbs
+
+| Verb  | Description                  | Example                          |
+|-------|------------------------------|----------------------------------|
+| `%v`  | Default format               | `fmt.Printf("%v", 42)` → `42`   |
+| `%+v` | Adds field names (for structs) | `fmt.Printf("%+v", person)` → `{Name:John Age:30}` |
+| `%#v` | Go-syntax representation     | `fmt.Printf("%#v", 42)` → `42`   |
+| `%T`  | Type of the value            | `fmt.Printf("%T", 42)` → `int`  |
+| `%%`  | A literal percent sign       | `fmt.Printf("%%")` → `%`        |
+
+---
+
+### ✅ Boolean
+
+| Verb | Description       | Example                       |
+|------|-------------------|-------------------------------|
+| `%t` | Boolean value     | `fmt.Printf("%t", true)` → `true` |
+
+---
+
+### 🔢 Integers
+
+| Verb | Description         | Example                              |
+|------|---------------------|--------------------------------------|
+| `%b` | Binary              | `fmt.Printf("%b", 5)` → `101`        |
+| `%c` | Character           | `fmt.Printf("%c", 65)` → `A`         |
+| `%d` | Decimal             | `fmt.Printf("%d", 123)` → `123`      |
+| `%o` | Octal               | `fmt.Printf("%o", 10)` → `12`        |
+| `%O` | Octal with prefix   | `fmt.Printf("%#o", 10)` → `0o12`     |
+| `%x` | Hex (lowercase)     | `fmt.Printf("%x", 255)` → `ff`       |
+| `%X` | Hex (uppercase)     | `fmt.Printf("%X", 255)` → `FF`       |
+| `%U` | Unicode             | `fmt.Printf("%U", 65)` → `U+0041`    |
+
+---
+
+### 🔬 Floating-Point and Complex Numbers
+
+| Verb | Description                   | Example                          |
+|------|-------------------------------|----------------------------------|
+| `%b` | Scientific notation (powers of 2) | `fmt.Printf("%b", 3.14)` → `715827882E-26` |
+| `%e` | Scientific (e.g., `1.23e+03`) | `fmt.Printf("%e", 3.14)` → `3.140000e+00` |
+| `%E` | Same as `%e`, but capital E  | `fmt.Printf("%E", 3.14)` → `3.140000E+00` |
+| `%f` | Decimal, no exponent          | `fmt.Printf("%f", 3.14)` → `3.140000`     |
+| `%F` | Same as `%f`                  | `fmt.Printf("%F", 3.14)` → `3.140000`     |
+| `%g` | Compact: `%e` or `%f`         | `fmt.Printf("%g", 3.14)` → `3.14`         |
+| `%G` | Same as `%g`, with capital E | `fmt.Printf("%G", 3.14e10)` → `3.14E+10`  |
+
+---
+
+### 🔤 Strings and Byte Slices
+
+| Verb | Description              | Example                              |
+|------|--------------------------|--------------------------------------|
+| `%s` | Plain string             | `fmt.Printf("%s", "hello")` → `hello` |
+| `%q` | Double-quoted string     | `fmt.Printf("%q", "hello")` → `"hello"` |
+| `%x` | Hexadecimal (lowercase) | `fmt.Printf("%x", "hi")` → `6869`    |
+| `%X` | Hexadecimal (uppercase) | `fmt.Printf("%X", "hi")` → `6869`    |
+
+---
+
+### 🎯 Pointer
+
+| Verb | Description                | Example                          |
+|------|----------------------------|----------------------------------|
+| `%p` | Memory address in hex      | `fmt.Printf("%p", &x)` → `0x1040a120` |
+
+---
+
+### ⚙️ Width and Precision
+
+Format: `%[flags][width][.precision][verb]`
+
+| Example       | Description                                      |
+|---------------|--------------------------------------------------|
+| `%6d`         | Width 6, right-aligned decimal                  |
+| `%-6d`        | Width 6, left-aligned decimal                   |
+| `%06d`        | Width 6, padded with zeros                      |
+| `%6.2f`       | Width 6, 2 digits after decimal for float       |
+| `%*.*f`       | Dynamic width and precision                     |
+
+```go
+fmt.Printf("|%6d|\n", 42)     // |    42|
+fmt.Printf("|%-6d|\n", 42)    // |42    |
+fmt.Printf("|%06d|\n", 42)    // |000042|
+fmt.Printf("|%6.2f|\n", 3.1415) // |  3.14|
+```
+### Code Exanple
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    x := 42
+    pi := 3.14159
+    s := "GoLang"
+
+    fmt.Printf("Value: %v\n", x)
+    fmt.Printf("Type: %T\n", x)
+    fmt.Printf("Binary: %b\n", x)
+    fmt.Printf("Character: %c\n", x)
+    fmt.Printf("Hex: %x\n", x)
+    fmt.Printf("Float: %f\n", pi)
+    fmt.Printf("Quoted String: %q\n", s)
+    fmt.Printf("Pointer: %p\n", &x)
+}
+```
+[Official docs for fmt package](https://pkg.go.dev/fmt)
+---
+## 🏗️ Architecture-Independent Integer Types in Go
+
+Go provides a set of fixed-width integer types that have the same size across all architectures, ensuring predictable behavior when you need **portable**, **binary-safe**, or **networked** code.
+
+---
+
+### 📌 Signed Integer Types
+
+| Type     | Size  | Range                              |
+|----------|-------|------------------------------------|
+| `int8`   | 8 bits | -128 to 127                       |
+| `int16`  | 16 bits | -32,768 to 32,767                |
+| `int32`  | 32 bits | -2,147,483,648 to 2,147,483,647  |
+| `int64`  | 64 bits | ±9.2e18                          |
+
+---
+
+### 📌 Unsigned Integer Types
+
+| Type     | Size   | Range                         |
+|----------|--------|-------------------------------|
+| `uint8`  | 8 bits | 0 to 255                      |
+| `uint16` | 16 bits | 0 to 65,535                  |
+| `uint32` | 32 bits | 0 to 4,294,967,295           |
+| `uint64` | 64 bits | 0 to 18,446,744,073,709,551,615 |
+
+---
+
+### 🧊 Aliases
+
+| Alias     | Underlying Type | Common Use      |
+|-----------|------------------|-----------------|
+| `byte`    | `uint8`          | Working with raw data, files, slices |
+| `rune`    | `int32`          | Unicode code points (characters)     |
+
+---
+
+### 🆚 Architecture-Dependent Types
+
+| Type   | Size (varies)       | Notes                            |
+|--------|---------------------|----------------------------------|
+| `int`  | 32 or 64 bits       | Depends on system architecture  |
+| `uint` | 32 or 64 bits       | Use with caution in portable code |
+
+---
+
+### ✅ Example
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    var a int32 = 1000
+    var b uint16 = 500
+
+    fmt.Printf("a: %d (%T)\n", a, a)
+    fmt.Printf("b: %d (%T)\n", b, b)
+}
+```
 
 ---
 

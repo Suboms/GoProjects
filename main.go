@@ -1,11 +1,11 @@
 package main
 
 import (
-  "fmt"
-  "bufio"
-  "os"
-  "strings"
-  )
+	"bufio"
+	"fmt"
+	"os"
+	"strings"
+)
 
 func add(x, y int) int{
   return x+y
